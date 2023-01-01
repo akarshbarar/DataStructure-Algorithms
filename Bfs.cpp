@@ -1,68 +1,29 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-class Graph {
 
-	public:
-		unordered_map<int, list<int>> adjL;	
-	// direction is just for Directed graphs otherwise it will be 0
-	void addEdge(int u, int v, bool direction) {
-		adjL[u].push_back(v);
-		if(direction == 0 ) {
-			adjL[v].push_back(u);
-		}
-	}
-	
-	void printAdjacancyList() {
-		for(auto i : adjL) {
-			cout<<i.first<<"==>";
-			for(auto j: i.second) {
-				cout<< j<<",";
-			}
-			cout<<endl;
-		}
-			
-	}
+signed main() {
+    int v,e;
+    cin>>v>>e;
+    map<int, list<int>> adj;
+    // Create Adjacency List
+    for(int i=0; i<e; i++){
+        int u,v;
+        cin>>u>>v;
+        adj[u].push_back(v);
+        adj[v].push_back(u);
+    }
 
-	void bfs(int s, int V) {
-		vector<bool> vis(V, false);
-		list<int> que;
+    // Print Adjacancy List
+    for(auto i: adj) {
+        cout<<i.first<<" --> ";
+        for(auto j : i.second)
+            cout<<j<<", ";
+        cout<<"\n";
+    }
 
-		vis[s] = true;
-		que.push_back(s);
+    vector<int> bfs;
+    // vector<int> vis()
 
-		while(!que.empty()) {
 
-			s = que.front();
-			cout<<s<<endl;
-			que.pop_front();
-
-			for(auto adj: adjL[s]) {
-				if(!vis[adj]) {
-					vis[adj] = true;
-					que.push_back(adj);
-				}
-			}
-		}
-	}
-};
-
-int main() {
-	int V, E;
-	cout<< "Enter Vertices and Edges"<<endl;
-	cin >> V >> E;
-
-	//Init Graph
-	Graph g;
-	
-	for(int i =0; i< E; i++	) {
-		int u, v;
-		cin >> u >> v;
-		g.addEdge(u, v, 0);
-	}
-	cout<<"Adjacancy List--->"<<endl;
-	g.printAdjacancyList();
-	cout<<"BFS-->"<<endl;
-	g.bfs(2, V);
-	return 0;
 }
