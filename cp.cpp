@@ -152,15 +152,33 @@ void solve() {
   // Акарш
   // Input
 
-  int a,b,c;
-  cin>>a>>b>>c;
+int n; cin>>n;
+vector<int> a(n);
+for (int i = 0; i < n; ++i)
+{
+  /* code */
+  cin>>a[i];
+}
 
-  if ((b-a) <= 2*c) 
-    YES
-  else
-    NO
+vector<int> l(n);
+vector<int> r(n);
+l[0] = a[0];
+for(int i=1; i<n; i++) {
+  l[i] = a[i]*l[i-1];
+}
+r[0] = a[n-1];
+for(int i=n-2; i>=0; i--) {
+  r[i] = a[i]*r[i+1];
+}
+for(int i=0; i<n; i++) {
+  cout<<l[i]<<" ";
+}
+cout<<endl;
 
- 
+for(int i=0; i<n; i++) {
+  cout<<r[i]<<" ";
+}
+cout<<endl;
 
   // Акарш
 } 
