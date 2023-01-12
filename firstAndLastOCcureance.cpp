@@ -1,7 +1,4 @@
-#include <iostream>
-#include <bits/stdc++.h>
-
-using namespace std;
+#include <bits/stdc++.h> 
 
 int firstOcc(vector<int> &arr, int k) {
     int s = 0;
@@ -54,29 +51,11 @@ int lastOCc(vector<int> &arr, int k) {
 
     return ans;
 }
-
-
-
-int main() {
-    // your code goes here
-    int t; cin>>t;
-    
-    while(t--) {
-        int n,k;
-        cin>>n>>k;
-
-        vector<int> arr;
-        for (int i = 0; i < n; ++i) {
-            /* code */
-            int x;
-            cin>>x;
-            arr.push_back(x);
-        }
-
-        cout<<firstOcc(arr,k)<<endl;
-        cout<<lastOCc(arr,k)<<endl;
-
-        
-    }
-    return 0;
+pair<int, int> firstAndLastPosition(vector<int>& arr, int n, int k)
+{
+    // Write your code here
+    pair<int,int> p;
+    p.first= firstOcc(arr,k);
+    p.second = lastOCc(arr,k);
+    return p;
 }
