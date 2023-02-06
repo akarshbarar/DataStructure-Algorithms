@@ -3,48 +3,22 @@
 
 using namespace std;
 
-bool isValid(string s) {
-        stack<char> stk;
-        int l = s.length();
-        for(int i=0; i<l; i++) {
-            if(s[i] == '(' || s[i] == '{' || s[i] == '[') {
-                stk.push(s[i]);
-            }
-            else if (stk.empty() || s[i] == ')') {
-                char x = stk.top();
-                if ( x != '('){
-                    stk.pop();
-                    return false;
-                }
-            }
-            else if (stk.empty() || s[i] == '}') {
-                char x = stk.top();
-                if ( x != '{'){
-                    stk.pop();
-                    return false;
-                }
-            }
-            else if (stk.empty() || s[i] == ']') {
-                char x = stk.top();
-                if ( x != '[') {
-                    stk.pop();
-                    return false;
-                }
+void findSubsequences(std::string& str) {
+    int n = str.size();
+    for (int i = 0; i < (1 << n); ++i) {
+        std::bitset<32> b(i);
+        std::cout << "Subsequence: ";
+        for (int j = 0; j < n; ++j) {
+            if (b[j]) {
+                std::cout << str[j] << " ";
             }
         }
-        return true;
+        std::cout << "\n";
     }
+}
 
 int main() {
-    // your code goes here
-    string s = "{[]}";
-
-    if(isValid(s)) {
-        cout<<"True";
-    }
-    else {
-        cout<<"false";
-    }
-   
+    std::string str = "abc";
+    findSubsequences(str);
     return 0;
 }
