@@ -3,22 +3,30 @@
 
 using namespace std;
 
-void findSubsequences(std::string& str) {
-    int n = str.size();
-    for (int i = 0; i < (1 << n); ++i) {
-        std::bitset<32> b(i);
-        std::cout << "Subsequence: ";
-        for (int j = 0; j < n; ++j) {
-            if (b[j]) {
-                std::cout << str[j] << " ";
-            }
-        }
-        std::cout << "\n";
-    }
+bool isEven(long long n)
+{
+ 
+    // n^1 is n+1, then even, else odd
+    if ((n ^ 1) == (n + 1))
+        return true;
+    else
+        return false;
 }
 
 int main() {
-    std::string str = "abc";
-    findSubsequences(str);
+    // your code goes here
+    
+    long long n;
+    cin>>n;
+    cout<<n<<" ";
+    while(n != 1) {
+        if(isEven(n)){
+            n= n/2;
+        }
+        else {
+            n = (n*3)+1;
+        }
+        cout<<n<<" ";
+    }
     return 0;
 }
